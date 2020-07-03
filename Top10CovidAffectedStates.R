@@ -1,0 +1,27 @@
+setwd("/Users/varshakr/Documents/R programs/")
+stateWiseData<-read.csv("stateWiseData.csv",header = TRUE)
+attach(stateWiseData)
+barplot(Maharashtra,names.arg = Date.,col="yellow",las=2,ylim = c(0,800),main = "Covid cases trend in Maharashtra from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Gujarat,names.arg = Date.,col="blue",las=2,ylim = c(0,400),,main = "Covid cases trend in Guajarat from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Delhi,names.arg = Date.,col="pink",las=2,ylim = c(0,400),main = "Covid cases trend in Delhi from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Rajasthan,names.arg = Date.,col="red",las=2,ylim = c(0,300),main = "Covid cases trend in Rajasthan from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Madhya.Pradesh,names.arg = Date.,col="green",las=2,ylim = c(0,250),main = "Covid cases trend in Madhya Pradesh from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Tamil.Nadu,names.arg = Date.,col="orange",las=2,ylim = c(0,200),main = "Covid cases trend in Tamil Nadu from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Uttar.Pradesh,names.arg = Date.,col="violet",las=2,ylim = c(0,200),main = "Covid cases trend in Uttar Pradesh from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Telangana,names.arg = Date.,col="blueviolet",las=2,ylim = c(0,150),main = "Covid cases trend in Telengana from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(Andhra.Pradesh,names.arg = Date.,col="cyan",las=2,ylim = c(0,150),main = "Covid cases trend in Andhra Pradesh from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+barplot(West.Bengal,names.arg = Date.,col="deeppink",las=2,ylim = c(0,70),main = "Covid cases trend in West Bengal from start till Apr 24",xlab="Date",ylab = "Number of Covid Cases",cex.lab=1,cex.axis = 1,cex.names = 0.8,col.main="maroon4")
+#India's Date Wise Covid Cases Trend
+h<-barplot(Total,names.arg = Date.,xlim = c(0,30000),col="yellow",horiz = TRUE,width=c(10,10),ylim = c(0,660),las=2,main="Covid Cases Trend in India from start till April 24",xlab = "Number of Covid Cases",ylab="Date",col.main="darkgreen",col.lab="darkgreen",cex.axis = 0.75,cex.names = 0.75)
+text(0,h,Total,cex=0.7,pos=4,col = "darkgreen") 
+ggplot(stateWiseData,aes(x=reorder(Date.,Total),y=Total))+geom_bar(fill="dodgerblue",stat = "identity")+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))+geom_text(aes(label = Total), nudge_y = 4.5,nudge_x = 0.05)+coord_flip()+annotate("text", x = "Apr-24", y = 10000, label = "Total Cases So Far= 23452", color = "white")+theme_minimal()+labs(title = "Total Covid Cases Trend from Start till April 24",caption = "Source: Data from MoHFW(Ministry of Health and Family Welfare), Wikipedia",x="Date",y="Total Cases")
+#Total Active Cases
+ggplot(dateWiseData,aes(x=reorder(Date.,NewCases),y=NewCases))+geom_bar(fill="#E69F00",stat = "identity")+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))+geom_text(aes(label = NewCases), nudge_y = 5.5,nudge_x = 0.05)+coord_flip()+annotate("text", x = "Apr-24", y = 700, label = "Total Number of Active Cases So Far= 1752", color = "white")+theme_minimal()+labs(title = "Total Number of Active Cases from Start till April 24",caption = "Source: Data from MoHFW(Ministry of Health and Family Welfare), Wikipedia",x="Date",y="Number of Active Cases")
+#Total Deaths
+ggplot(dateWiseData,aes(x=reorder(Date.,TotalDeaths),y=TotalDeaths))+geom_bar(fill="#FF9999",stat = "identity")+theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))+geom_text(aes(label = TotalDeaths), nudge_y = 5.5,nudge_x = 0.05)+coord_flip()+annotate("text", x = "Apr-24", y = 350, label = "Total Deaths So Far= 723", color = "white")+theme_minimal()+labs(title = "Total Deaths from Start till April 24",caption = "Source: Data from MoHFW(Ministry of Health and Family Welfare), Wikipedia",x="Date",y="Number of Deaths")
+#read cdata from covidAnalysis.R
+#Total Cases State Wise
+ggplot(cdata,aes(x=State_UT,y=TotalCases))+geom_bar(fill="dodgerblue",stat = "identity")+geom_text(aes(label = TotalCases), position = position_dodge(0.9), vjust = 0.0)+theme_minimal()+labs(title = "State Wise Total Cases",caption = "Source: Data from MoHFW(Ministry of Health and Family Welfare), Wikipedia",x="State/Union Territory",y="Recovery in Percentage")+ theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))
+#Total Deaths State Wise
+ggplot(cdata,aes(x=State_UT,y=Deaths))+geom_bar(fill="#32CD32",stat = "identity")+geom_text(aes(label = Deaths), position = position_dodge(0.9),vjust = 0.0)+theme_minimal()+labs(title = "State Wise Total Deaths",caption = "Source: Data from MoHFW(Ministry of Health and Family Welfare), Wikipedia",x="State/Union Territory",y="Number of deaths")+ theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5))
+#read csv file recoverData.csv
